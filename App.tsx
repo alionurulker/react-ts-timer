@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Timer from './Timer';
+import Timer from './timer';
 
 function App() {
   return (
     <div>
-      <Timer time={1} />
+      <timer time={1} />
     </div>
   );
 }
