@@ -4,7 +4,7 @@ import Timer from './timer';
 function App() {
   return (
     <div>
-      <timer time={1} />
+      <timer Time={1} />
     </div>
   );
 }
