@@ -38,4 +38,4 @@ const Timer: React.FC<Props> = ({ time }) => {
   );
 };
 
-export default Timer;
+export default timer;
