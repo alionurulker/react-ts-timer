@@ -38,4 +38,51 @@ const Timer: React.FC<Props> = ({ time }) => {
   );
 };
 
+// Another Solution
+function MyTime() {
+  const [partyTime, setPartyTime] = useState(false);
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const now1 = new Date();
+    const target = new Date(now1.getTime());
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = now.getTime() - target.getTime();
+
+      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+      setDays(d);
+
+      const h = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      setHours(h);
+
+      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      setMinutes(m);
+
+      const s = Math.floor((difference % (1000 * 60)) / 1000);
+      setSeconds(s);
+
+      if (d <= 0 && h <= 0 && m <= 0 && s <= 0) {
+        setPartyTime(true);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="timer-wrapper">
+      <span
+        style={{ fontSize: '1.3rem', marginRight: '8px' }}
+      >{`${hours}: ${minutes}: ${seconds}`}</span>
+    </div>
+  );
+}
+
 export default Timer;
